@@ -1,15 +1,13 @@
 "use strict";
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 import "@polymer/iron-iconset-svg";
 import "@polymer/paper-icon-button";
 import "@polymer/paper-button";
 
 class HTPageHeader extends LitElement {
-  render() {
-    const { text, backURL, actionButtonURL, actionButtonText } = this;
-    return html`
-    ${SharedStyles}
-    <style>
+  static styles = [
+    window.SharedStyles,
+    css`<style>
         a {
             display: block;
             color: inherit;
@@ -43,7 +41,12 @@ class HTPageHeader extends LitElement {
             flex-direction: column;
             justify-content: flex-end;
         }
-    </style>
+    </style>`
+  ];
+
+  render() {
+    const { text, backURL, actionButtonURL, actionButtonText } = this;
+    return html`
     <iron-iconset-svg size="24" name="ht-page-header-icons">
         <svg>
             <defs>
@@ -55,21 +58,17 @@ class HTPageHeader extends LitElement {
     </iron-iconset-svg>
     <div id="container">
         <div id="header">
-            <a href=${backURL} ?hidden=${!backURL}>
+            <a href="${backURL}" ?hidden="${!backURL}">
                 <paper-icon-button icon="ht-page-header-icons:arrow-back"></paper-icon-button>
             </a>
             <h1 class="mdc-typography--headline5">${text}</h1>
         </div>
         <div id="action">
-            <a href=${actionButtonURL} ?hidden=${!actionButtonText}>
+            <a href="${actionButtonURL}" ?hidden="${!actionButtonText}">
                 <paper-button raised>${actionButtonText}</paper-button>
             </a>
         </div>
     </div>`;
-  }
-
-  static get is() {
-    return "ht-page-header";
   }
 
   static get properties() {
@@ -82,4 +81,4 @@ class HTPageHeader extends LitElement {
   }
 }
 
-customElements.define(HTPageHeader.is, HTPageHeader);
+customElements.define("ht-page-header", HTPageHeader);
