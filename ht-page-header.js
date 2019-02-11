@@ -4,45 +4,49 @@ import "@polymer/iron-iconset-svg";
 import "@polymer/paper-icon-button";
 import "@polymer/paper-button";
 
+import { styles } from "@01ht/ht-theme/styles";
+
 class HTPageHeader extends LitElement {
-  static styles = [
-    window.SharedStyles,
-    css`<style>
+  static get styles() {
+    return [
+      styles,
+      css`
         a {
-            display: block;
-            color: inherit;
+          display: block;
+          color: inherit;
         }
 
         a:hover {
-            text-decoration: none;
+          text-decoration: none;
         }
-    
+
         paper-icon-button {
-            margin-right:8px;
-            width:42px;
-            height:42px;
+          margin-right: 8px;
+          width: 42px;
+          height: 42px;
         }
 
         #container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 16px;
         }
 
         #header {
-            display: flex;
-            align-items:center;
+          display: flex;
+          align-items: center;
         }
 
         #action {
-            display:flex;
-            flex-direction: column;
-            justify-content: flex-end;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
         }
-    </style>`
-  ];
+      `
+    ];
+  }
 
   render() {
     const { text, backURL, actionButtonURL, actionButtonText } = this;
